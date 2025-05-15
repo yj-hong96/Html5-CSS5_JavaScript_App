@@ -39,4 +39,5 @@ step6
     - GET /api/students 서버와 통신하는 loadStudents() 구현 fetch 함수사용
     - renderStudentTalble() 구현 table에 목록을 동적으로 출력하기
 step7
-    - 
+    - studentData 객체 구조 변경하기 및 validate() 함수 수정
+    - POST API/STUDENT 서버와 통신하는 CREAT

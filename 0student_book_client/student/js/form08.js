@@ -47,6 +47,7 @@ studentForm.addEventListener("submit", function (event) {
 
 });
 
+
 //Student 등록 함수
 function createStudent(studentData) {
     fetch(`${API_BASE_URL}/api/students`,{
@@ -178,4 +179,32 @@ function renderStudentTable(students) {
         //<tbody>의 아래에 <tr>을 추가시켜 준다.
         studentTableBody.appendChild(row);
     });
+}
+
+//학생 삭제 함수
+function deleteStudent(studentId) {
+    if(!confirm('ID = ${studentId} 인 학생을 정말로 삭제하시겠습니까?')){
+        return;
+    }
+    console.log('삭제처리...');
+    fetch('${API_BASE_URL}/api/students/${studentId}',{
+        method: 'DELETE'
+    })
+     .then(async (response) => {
+        if(!response.ok) {
+            //응답 본문을 읽어서 에러 메시지 추출
+            const errorData = await response.json();
+            //status code와 message를 확인하기
+            if(response.status === 404){
+                //중복 오류 처리
+                throw new Error(errorData.message || '존재하지 않는 학생입니다.');
+            }else {
+                //기타 오류 처리
+                throw new Error(errorData.message || '학생 삭제에 실패했습니다.')
+            }
+        }
+        alert("학생이 성공적으로 삭제되었습니다.");
+        //목록 새로 고침
+        loadStudents();
+    })
 }
