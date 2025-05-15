@@ -34,3 +34,9 @@ step4
 
 step5
     - 입력한 데이터를 검증하는 validata
+
+step6
+    - GET /api/students 서버와 통신하는 loadStudents() 구현 fetch 함수사용
+    - renderStudentTalble() 구현 table에 목록을 동적으로 출력하기
+step7
+    - 
